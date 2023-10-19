@@ -10,12 +10,8 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.room.Room;
-
-import android.text.InputFilter;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -38,7 +34,7 @@ public class QuoteFragment extends Fragment {
     QuoteDatabase quoteDatabase;
     QuoteDao quoteDao;
     Quote quoteFromMain;
-    private final CompositeDisposable mDisposable = new CompositeDisposable();
+    private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
 
     public QuoteFragment() {
@@ -68,8 +64,7 @@ public class QuoteFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentQuoteBinding.inflate(inflater,container,false);
-        View view = binding.getRoot();
-        return view;
+        return binding.getRoot();
     }
 
 
@@ -119,7 +114,7 @@ public class QuoteFragment extends Fragment {
             binding.authorPlainText.setEnabled(false);
             binding.bookPlainText.setEnabled(false);
 
-            mDisposable.add(quoteDao.getArtById(quoteId)
+            compositeDisposable.add(quoteDao.getArtById(quoteId)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(QuoteFragment.this::handleResponseWithOldQuote));
@@ -139,19 +134,23 @@ public class QuoteFragment extends Fragment {
         else {
             Quote quote = new Quote(quoteName,authorName,bookName);
 
-            mDisposable.add(quoteDao.insert(quote)
+            compositeDisposable.add(quoteDao.insert(quote)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(QuoteFragment.this::handleResponse));
+
+            Toast.makeText(requireContext(), "Quote Saved", Toast.LENGTH_LONG).show();
         }
 
     }
 
     public void delete(View view){
-        mDisposable.add(quoteDao.delete(quoteFromMain)
+        compositeDisposable.add(quoteDao.delete(quoteFromMain)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(QuoteFragment.this::handleResponse));
+
+        Toast.makeText(requireContext(), "Quote Deleted", Toast.LENGTH_LONG).show();
     }
 
     public void handleResponseWithOldQuote(Quote quote){
@@ -171,6 +170,6 @@ public class QuoteFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
-        mDisposable.clear();
+        compositeDisposable.clear();
     }
 }

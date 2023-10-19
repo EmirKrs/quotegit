@@ -15,7 +15,7 @@ import io.reactivex.rxjava3.core.Flowable;
 @Dao
 public interface QuoteDao {
 
-    @Query("SELECT quotename,bookname,authorname, id FROM Quote")
+    @Query("SELECT * FROM Quote")
     Flowable<List<Quote>> getArtWithNameAndId();
 
     @Query("SELECT * FROM Quote WHERE id = :id")
