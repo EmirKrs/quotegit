@@ -75,7 +75,7 @@
         android:padding="10dp"
         android:fontFamily="@font/gabarito"
         android:inputType="text"
-        android:maxLength="28"
+        android:maxLength="30"
         app:layout_constraintBottom_toTopOf="@+id/bookText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

@@ -63,10 +63,10 @@ public class QuoteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         switch (viewType){
             case typeA:
-                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_row,parent,false);
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_row2,parent,false);
                 break;
             case typeB:
-                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_row2,parent,false);
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_row,parent,false);
                 break;
             case typeC:
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_row3,parent,false);

@@ -9,4 +9,12 @@
 
     <style name="Theme.Quote" parent="Base.Theme.Quote" />
 
+    <style name="LauncherFullScreen">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
 </resources>

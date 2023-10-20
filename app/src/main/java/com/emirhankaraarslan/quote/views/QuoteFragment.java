@@ -139,7 +139,7 @@ public class QuoteFragment extends Fragment {
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(QuoteFragment.this::handleResponse));
 
-            Toast.makeText(requireContext(), "Quote Saved", Toast.LENGTH_LONG).show();
+            Toast.makeText(requireContext(), "Quote Saved", Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -150,7 +150,7 @@ public class QuoteFragment extends Fragment {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(QuoteFragment.this::handleResponse));
 
-        Toast.makeText(requireContext(), "Quote Deleted", Toast.LENGTH_LONG).show();
+        Toast.makeText(requireContext(), "Quote Deleted", Toast.LENGTH_SHORT).show();
     }
 
     public void handleResponseWithOldQuote(Quote quote){
